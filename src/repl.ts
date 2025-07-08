@@ -6,6 +6,7 @@ export function cleanInput(input: string): string[] {
   return input.toLowerCase().trim().split(/\s+/)
 }
 
+//sync test
 export function startREPL() {
   const rl = createInterface({
     input: stdin,
