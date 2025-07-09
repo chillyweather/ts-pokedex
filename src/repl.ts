@@ -1,13 +1,14 @@
 
 import { createInterface } from 'node:readline';
 import { stdin, stdout } from 'node:process';
+import { getCommands } from './commands.js';
 
 export function cleanInput(input: string): string[] {
   return input.toLowerCase().trim().split(/\s+/)
 }
 
-//sync test
 export function startREPL() {
+  const commands = getCommands()
   const rl = createInterface({
     input: stdin,
     output: stdout,
@@ -21,7 +22,14 @@ export function startREPL() {
     if (!(cleaned && cleaned.length)) {
       rl.prompt()
     }
-    console.log(`Your command was: ${cleaned[0]}`);
+
+    const command = commands[cleaned[0]]
+    if (!command) {
+      console.log("No such command")
+      rl.prompt()
+    }
+
+    command.callback(commands)
     rl.prompt()
   });
 }
