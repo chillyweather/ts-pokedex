@@ -1,16 +1,8 @@
-import { createInterface } from 'node:readline';
-import { stdin, stdout } from 'node:process';
-import { getCommands } from './commands.js';
 export function cleanInput(input) {
     return input.toLowerCase().trim().split(/\s+/);
 }
-export function startREPL() {
-    const commands = getCommands();
-    const rl = createInterface({
-        input: stdin,
-        output: stdout,
-        prompt: "Pokedex "
-    });
+export function startREPL(State) {
+    const { rl, commands } = State;
     rl.prompt();
     rl.on('line', (input) => {
         const cleaned = cleanInput(input);
@@ -22,7 +14,7 @@ export function startREPL() {
             console.log("No such command");
             rl.prompt();
         }
-        command.callback(commands);
+        command.callback(State);
         rl.prompt();
     });
 }

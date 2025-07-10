@@ -4,8 +4,9 @@ export function cleanInput(input: string): string[] {
   return input.toLowerCase().trim().split(/\s+/)
 }
 
-export function startREPL({ rl, commands }: State) {
-
+export function startREPL(State: State) {
+  const { rl, commands } = State;
+  rl.prompt()
   rl.on('line', (input) => {
     const cleaned = cleanInput(input)
     if (!(cleaned && cleaned.length)) {
@@ -18,7 +19,7 @@ export function startREPL({ rl, commands }: State) {
       rl.prompt()
     }
 
-    command.callback(commands)
+    command.callback(State)
 
     rl.prompt()
   });
