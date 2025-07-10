@@ -1,6 +1,5 @@
 
 import { createInterface } from 'node:readline';
-import { stdin, stdout } from 'node:process';
 import { getCommands } from './commands.js';
 
 export function cleanInput(input: string): string[] {
@@ -8,12 +7,12 @@ export function cleanInput(input: string): string[] {
 }
 
 export function startREPL() {
-  const commands = getCommands()
-  const rl = createInterface({
-    input: stdin,
-    output: stdout,
-    prompt: "Pokedex "
-  });
+  // const commands = getCommands()
+  // const rl = createInterface({
+  //   input: stdin,
+  //   output: stdout,
+  //   prompt: "Pokedex "
+  // });
 
   rl.prompt()
 
