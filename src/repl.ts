@@ -30,6 +30,7 @@ export function startREPL() {
     }
 
     command.callback(commands)
+
     rl.prompt()
   });
 }
