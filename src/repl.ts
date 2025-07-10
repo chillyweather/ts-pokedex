@@ -6,7 +6,6 @@ export function cleanInput(input: string): string[] {
   return input.toLowerCase().trim().split(/\s+/)
 }
 
-//sync test
 export function startREPL() {
   const rl = createInterface({
     input: stdin,
@@ -21,7 +20,7 @@ export function startREPL() {
     if (!(cleaned && cleaned.length)) {
       rl.prompt()
     }
-    console.log(`Your command was: ${cleaned[0]}`);
+ 
     rl.prompt()
   });
 }
