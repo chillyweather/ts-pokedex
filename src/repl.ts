@@ -1,20 +1,10 @@
-
-import { createInterface } from 'node:readline';
-import { getCommands } from './commands.js';
+import { State } from "./state.js"
 
 export function cleanInput(input: string): string[] {
   return input.toLowerCase().trim().split(/\s+/)
 }
 
-export function startREPL() {
-  // const commands = getCommands()
-  // const rl = createInterface({
-  //   input: stdin,
-  //   output: stdout,
-  //   prompt: "Pokedex "
-  // });
-
-  rl.prompt()
+export function startREPL({ rl, commands }: State) {
 
   rl.on('line', (input) => {
     const cleaned = cleanInput(input)
