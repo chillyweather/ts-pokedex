@@ -15,6 +15,10 @@ export function getCommands(): Record<string, CLICommand> {
       description: "Displays a help message",
       callback: commandHelp,
     },
-    // can add more commands here
+    map: {
+      name: "map",
+      description: "List locations",
+      callback: commandMap,
+    }
   };
 } 
