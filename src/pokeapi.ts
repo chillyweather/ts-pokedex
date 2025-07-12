@@ -5,12 +5,15 @@ export class PokeAPI {
 
   async fetchLocations(pageURL?: string): Promise<ShallowLocations> {
     const url = pageURL || PokeAPI.baseURL + "/location-area/"
-    const response = await fetch(url)
-    return response
+    try {
+
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   async fetchLocation(locationName: string): Promise<Location> {
-    // implement thi
+    // implement this
   }
 }
 
