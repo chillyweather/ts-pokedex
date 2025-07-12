@@ -6,7 +6,9 @@ export function cleanInput(input: string): string[] {
 
 export function startREPL(State: State) {
   const { rl, commands } = State;
+
   rl.prompt()
+
   rl.on('line', (input) => {
     const cleaned = cleanInput(input)
     if (!(cleaned && cleaned.length)) {
@@ -24,3 +26,6 @@ export function startREPL(State: State) {
     rl.prompt()
   });
 }
+
+
+
