@@ -1,5 +1,5 @@
 import { CLICommand, State } from "src/state"
-export function commandHelp(state: State): void {
+export async function commandHelp(state: State) {
   console.log("Welcome to the Pokedex!")
   console.log("Usage:\n")
 
