@@ -1,13 +1,13 @@
 
 import { createInterface, ReadLine, type Interface } from "readline";
 import { stdin, stdout } from 'node:process';
-import { getCommands } from "./commands.js"
+import { getCommands } from "./commands.js";
 import { PokeAPI } from "./pokeapi.js";
 
 export type CLICommand = {
   name: string;
   description: string;
-  callback: (state: State) => void;
+  callback: (state: State) => Promise<void>;
 };
 
 export type State = {
