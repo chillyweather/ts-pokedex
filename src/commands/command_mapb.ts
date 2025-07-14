@@ -1,11 +1,15 @@
+
 import { State } from "src/state";
 
-export async function commandMap(state: State): Promise<void> {
+export async function commandMapb(state: State): Promise<void> {
   const api = state.api
-  let currentUrl = state.nextLocation
+  let currentUrl = state.prevLocation
+  if (!currentUrl) {
+    console.log("you're on the first page")
+    return
+  }
   try {
-    const locationObject = currentUrl.length ? await api.fetchLocations(currentUrl) : await api.fetchLocations()
-    state.nextLocation = locationObject.next
+    const locationObject = currentUrl ? await api.fetchLocations(currentUrl) : await api.fetchLocations()
     if (locationObject.previous) state.prevLocation = locationObject.previous
     for (const location of locationObject.results) {
       console.log(location.name)

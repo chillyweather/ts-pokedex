@@ -1,10 +1,10 @@
 export function cleanInput(input) {
     return input.toLowerCase().trim().split(/\s+/);
 }
-export function startREPL(State) {
+export async function startREPL(State) {
     const { rl, commands } = State;
     rl.prompt();
-    rl.on('line', (input) => {
+    rl.on('line', async (input) => {
         const cleaned = cleanInput(input);
         if (!(cleaned && cleaned.length)) {
             rl.prompt();
@@ -14,7 +14,7 @@ export function startREPL(State) {
             console.log("No such command");
             rl.prompt();
         }
-        command.callback(State);
+        await command.callback(State);
         rl.prompt();
     });
 }

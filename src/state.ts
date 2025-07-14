@@ -23,7 +23,7 @@ export function initState(): State {
     rl: createInterface({
       input: stdin,
       output: stdout,
-      prompt: "Pokedex "
+      prompt: "Pokedex > "
     }),
     commands: getCommands(),
     api: new PokeAPI,

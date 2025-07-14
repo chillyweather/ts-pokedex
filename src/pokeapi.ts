@@ -16,14 +16,23 @@ export class PokeAPI {
   }
 
   async fetchLocation(locationName: string): Promise<Location> {
-    // implement this
+    const url = PokeAPI.baseURL + locationName
+    try {
+      const response = await fetch(url)
+      const data = response.json()
+      return data as Promise<Location>
+    } catch (err) {
+      console.log(err)
+      return {} as Promise<Location>
+    }
+
   }
 }
 
 export type ShallowLocations = {
   count: number
   next: string
-  previous: string
+  previous: string | null
   results: Location[]
 };
 
