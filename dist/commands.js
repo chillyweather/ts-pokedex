@@ -2,6 +2,7 @@ import { commandExit } from "./commands/command_exit.js";
 import { commandHelp } from "./commands/command_help.js";
 import { commandMap } from "./commands/command_map.js";
 import { commandMapb } from "./commands/command_mapb.js";
+import { commandExplore } from "./commands/command_explore.js";
 export function getCommands() {
     return {
         exit: {
@@ -23,6 +24,11 @@ export function getCommands() {
             name: "mapb",
             description: "List previous locations",
             callback: commandMapb,
+        },
+        explore: {
+            name: "explore",
+            description: "Displays found pokemon",
+            callback: commandExplore,
         }
     };
 }

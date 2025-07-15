@@ -1,4 +1,5 @@
 import { Cache } from "./pokecache.js";
+import { LocationData } from "./pokemon_types.js";
 
 export class PokeAPI {
   private static readonly baseURL = "https://pokeapi.co/api/v2";
@@ -25,17 +26,23 @@ export class PokeAPI {
     }
   }
 
-  async fetchLocation(locationName: string): Promise<Location> {
-    const url = PokeAPI.baseURL + locationName
-    try {
-      const response = await fetch(url)
-      const data = response.json()
-      return data as Promise<Location>
-    } catch (err) {
-      console.log(err)
-      return {} as Promise<Location>
+  async fetchLocation(locationName: string): Promise<LocationData> {
+    const url = PokeAPI.baseURL + "/location-area/" +
+      locationName
+    const cachedData = this.cache.get(url)
+    if (cachedData) {
+      return cachedData.val
+    } else {
+      try {
+        const response = await fetch(url)
+        const data = response.json()
+        this.cache.add(url, data)
+        return data as Promise<LocationData>
+      } catch (err) {
+        console.log(err)
+        return {} as Promise<LocationData>
+      }
     }
-
   }
 }
 

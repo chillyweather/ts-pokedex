@@ -19,9 +19,10 @@ export async function startREPL(State: State) {
     if (!command) {
       console.log("No such command")
       rl.prompt()
+      return
     }
 
-    await command.callback(State)
+    await command.callback(State, ...cleaned.slice(1))
 
     rl.prompt()
   });
