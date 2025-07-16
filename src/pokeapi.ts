@@ -7,6 +7,24 @@ export class PokeAPI {
 
   constructor() { }
 
+  async fetchPokemon(pokemonName?: string): Promise<ShallowLocations> {
+    const url = pageURL || PokeAPI.baseURL + "/pokemon/" + pokemonName
+    const cachedData = this.cache.get(url)
+    if (cachedData) {
+      return cachedData.val
+    } else {
+      try {
+        const response = await fetch(url)
+        const data = await response.json()
+        this.cache.add(url, data)
+        return data as Promise<ShallowLocations>
+      } catch (err) {
+        console.log(err)
+        return {} as Promise<ShallowLocations>
+      }
+
+    }
+  }
   async fetchLocations(pageURL?: string): Promise<ShallowLocations> {
     const url = pageURL || PokeAPI.baseURL + "/location-area/"
     const cachedData = this.cache.get(url)
