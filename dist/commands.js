@@ -5,6 +5,7 @@ import { commandMapb } from "./commands/command_mapb.js";
 import { commandExplore } from "./commands/command_explore.js";
 import { commandCatch } from "./commands/command_catch.js";
 import { commandInspect } from "./commands/command_inspect.js";
+import { commandPokedex } from "./commands/commant_pokedex.js";
 export function getCommands() {
     return {
         exit: {
@@ -41,6 +42,11 @@ export function getCommands() {
             name: "inspect",
             description: "Inspect a pokemon",
             callback: commandInspect,
+        },
+        pokedex: {
+            name: "pokedex",
+            description: "List pokemons",
+            callback: commandPokedex,
         }
     };
 }
